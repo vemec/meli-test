@@ -12895,8 +12895,8 @@ var Breadcrumb = function (_React$Component) {
         value: function render() {
 
             // get categories
-            var categories = void 0;
-            if (this.props.categories) {
+            var categories = _react2.default.createElement("li", null);
+            if (this.props.categories.length > 0) {
                 categories = this.props.categories.map(function (str, index) {
                     return _react2.default.createElement(
                         "li",

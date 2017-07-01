@@ -8,8 +8,8 @@ class Breadcrumb extends React.Component {
     render() {
 
         // get categories
-        let categories;
-        if (this.props.categories) {
+        let categories = <li></li>
+        if (this.props.categories.length > 0) {
             categories = this.props.categories.map((str, index) =>
                 <li key={ index }>
                     <span itemProp="title">{ str }</span>
