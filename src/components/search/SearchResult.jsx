@@ -6,8 +6,8 @@ import { parse } from 'qs'
 // components
 import Breadcrumb from '../categories/Breadcrumb.jsx'
 import SearchResultItem from './SearchResultItem.jsx'
-import EmptyState from '../EmptyState.jsx'
-import EmptyStateItem from '../EmptyStateItem.jsx'
+import EmptyState from '../empty-state/EmptyState.jsx'
+import EmptyStateItem from '../empty-state/EmptyStateItem.jsx'
 
 // get messages
 var msg_obj = require('../../messages')

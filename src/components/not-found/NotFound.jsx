@@ -2,7 +2,7 @@
 import React from 'react';
 
 // components
-import EmptyState from '../EmptyState.jsx'
+import EmptyState from '../empty-state/EmptyState.jsx'
 
 // get messages
 var msg_obj = require('../../messages')
