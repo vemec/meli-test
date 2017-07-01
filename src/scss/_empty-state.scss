@@ -1,0 +1,80 @@
+////
+// Description: Empty state for simple pages
+// Author: Diego Ghersi (diego@ghersi.com.ar)
+//
+
+.empty-state {
+    border-radius: 3px;
+    margin-top: 49px;
+    padding: 30px 30px 30px 80px;
+    background-color: #fff;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 15px;
+    }
+
+    li {
+        font-size: 14px;
+        padding: 3px 0;
+    }
+}
+
+.empty-state-image,
+.empty-state-text--location,
+.empty-state-text--price,
+.empty-state-text--title,
+.empty-state-text--breadcrumb {
+    background-color: #e0e0e0;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.empty-state-image {
+    height: 180px;
+    width: 180px;
+    margin-right: 16px;
+    float: left;
+}
+
+.empty-state-text--breadcrumb {
+    width: 45%;
+    height: 16px;
+}
+
+.empty-state-text--price {
+    width: 250px;
+    height: 28px;
+}
+
+.empty-state-text--title {
+    width: 50%;
+    height: 21px;
+}
+
+.empty-state-text--location {
+    width: 120px;
+    height: 12px;
+}
+
+
+.pulse {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #ececec;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}

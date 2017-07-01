@@ -1,0 +1,15 @@
+{
+  "name": "Front-End Test Práctico",
+  "short_name": "Test",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "./images/apple-touch-icon/152x152-precomposed.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffe600",
+  "background_color": "#ffe600",
+  "display": "standalone"
+}

@@ -1,0 +1,36 @@
+////
+// Description: breadcrumb
+// Author: Diego Ghersi (diego@ghersi.com.ar)
+//
+
+.breadcrumb {
+    padding: 16px 0;
+    font-size: 14px;
+    color: $gray-l2;
+
+    ol {
+        margin: 0;
+        padding: 0;
+    }
+
+    li:nth-last-child(1) {
+        font-weight: bold;
+
+        .breadcrumb-icon {
+            display: none;
+        }
+    }
+
+    li {
+        display: inline-block;
+        font-weight: 400;
+    }
+}
+
+.breadcrumb-icon {
+    width: 18px;
+    height: 18px;
+    fill: $gray-l2;
+    margin: 0 5px;
+    vertical-align: middle;
+}

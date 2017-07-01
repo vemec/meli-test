@@ -1,0 +1,25 @@
+// Module dependencies
+import React from 'react';
+
+// components
+import SearchForm from '../search/SearchForm.jsx';
+
+/**
+ * Header
+ */
+class Header extends React.Component {
+    render() {
+        return (
+        <header role="banner" className="nav-header nav-header-ontop">
+            <div className="wrap-header">
+                <div className="nav-container">
+                    <a tabIndex="0" className="logo" href="/">Mercado Libre - Test</a>
+                    <SearchForm query={ '' } />
+                </div>
+            </div>
+        </header>
+        )
+    }
+}
+
+export default Header;

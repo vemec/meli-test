@@ -1,0 +1,72 @@
+////
+// Description: Search Result styles
+// Author: Diego Ghersi (diego@ghersi.com.ar)
+//
+
+.search-result-container {
+    background-color: #fff;
+    line-height: 1;
+
+    ol {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style-type: none;
+        margin: 0 16px;
+        padding: 16px 0;
+        border-bottom: 2px solid $gray-l1;
+        @include clearfix;
+    }
+
+    li:nth-last-child(1) {
+        border-bottom: 0;
+    }
+}
+
+.result-item {
+    img {
+        border-radius: 4px;
+        height: 180px;
+        width: 180px;
+        margin-right: 16px;
+        float: left;
+    }
+}
+
+.result-item-info {
+    width: 90%;
+    padding-top: 15px;
+
+    a {
+        text-decoration: none;
+        color: $body-color;
+    }
+}
+
+.result-item-price {
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+
+.result-item-title {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.result-item-location {
+    float: right;
+    font-size: 12px;
+}
+
+.result-item-shipping {
+    display: inline-block;
+    position: absolute;
+    margin: 3px 0 0 10px;
+    background-image: url('/public/images/ic_shipping.png');
+    @include high-res-img('/public/images/ic_shipping@2x.png', 18px, 18px);
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 18px;
+}

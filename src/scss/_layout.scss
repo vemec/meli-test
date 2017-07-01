@@ -1,0 +1,33 @@
+////
+// Description: Main layout styles
+// Author: Diego Ghersi (diego@ghersi.com.ar)
+//
+
+.wrap-content {
+    max-width: 1000px;
+    padding: 0 10px;
+    margin: 0 auto 15px;
+}
+
+.content {
+    padding-top: 55px;
+}
+
+.base-container {
+    background-color: #fff;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 20px;
+}
+
+.svg-hide,
+.hide {
+    display: none;
+}
+
+.noscript-header {
+    border-top: 55px solid $brand;
+
+    .logo {
+        left: calc(50% - 26px)
+    }
+}
