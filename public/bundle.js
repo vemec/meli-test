@@ -29218,7 +29218,7 @@ var SearchResultItem = function (_React$Component) {
             if (this.props.product.free_shipping) {
                 free_shipping_icon = _react2.default.createElement(
                     'div',
-                    { className: 'result-item-shipping' },
+                    { className: 'result-item-shipping', title: 'Env\xEDo gratis a todo el pa\xEDs' },
                     '\xA0'
                 );
             }

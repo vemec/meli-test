@@ -11,7 +11,7 @@ class SearchResultItem extends React.Component {
         // get free_shipping_icon icon
         let free_shipping_icon;
         if (this.props.product.free_shipping) {
-            free_shipping_icon = <div className="result-item-shipping">&nbsp;</div>
+            free_shipping_icon = <div className="result-item-shipping" title="Envío gratis a todo el país">&nbsp;</div>
         }
 
         return (
