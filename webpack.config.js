@@ -4,7 +4,6 @@ const webpack = require('webpack');
 // plugins
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-// var StyleLintPlugin = require('stylelint-webpack-plugin')
 
 module.exports = {
     entry: './src/index.js',
@@ -14,12 +13,6 @@ module.exports = {
     },
     module: {
         rules: [
-            // {
-            //     enforce: 'pre',
-            //     test: /\.jsx?$/,
-            //     exclude: /node_modules/,
-            //     loader: 'eslint-loader'
-            // },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
@@ -47,13 +40,6 @@ module.exports = {
     },
     plugins: [
         // new webpack.optimize.UglifyJsPlugin(),
-        // new StyleLintPlugin({
-        //   configFile: '.stylelintrc',
-        //   context: 'src/scss',
-        //   files: '**/*.scss',
-        //   failOnError: false,
-        //   quiet: false
-        // }),
         new ExtractTextPlugin('style.css'),
         new webpack.SourceMapDevToolPlugin({
             test: [/\.js$/, /\.jsx$/],
