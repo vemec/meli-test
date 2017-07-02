@@ -53,73 +53,13 @@ router.get('/items/:id', function(req, res) {
         return res.json({ error: 'No item id was submitted.' })
     }
 
-    // get...
-    const f1 = getItem(req)
-        .then(function (product) {
-            if (product.status === 200) {
-                res.json(product.data)
-            }
-            else {
-
-            }
-
-            console.log(product)
-        })
-
-
-    // .then(response => itemInfo.product = response.data)
-    const f2 = getItemDescription(req).then(response => itemInfo.product = response.data)
-
-    // axios all
-    Promise.all([f1, f2])
-        .then(function () {
-            res.json(buildItem(itemInfo.product, itemInfo.description))
-        })
-        .catch(function (error) {
-            res.json(error)
-        })
-
-    // axios all
-    // axios.all([
-    //     getItem(req).catch(function (error) {
-    //         return error
-    //     }),
-    //     getItemDescription(req).catch(function (error) {
-    //         return error
-    //     })
-    //     ]).then(axios.spread(function (product, product_description) {
-    //         if (product.response.status == 404) {
-    //             const error = res.json({ error: 'The item with id '+req.params.id+' not found...' })
-    //             return Promise.reject(error);
-    //         }
-    //         else {
-    //             if (product.status === 200 && product_description.status === 200) {
-    //                 res.json(buildItem(product.data, product_description.data))
-    //             }
-    //             else {
-    //                 const error = res.json({ error: 'Oops! Something failed in the search' })
-    //                 return Promise.reject(error);
-    //             }
-    //         }
-    //     }))
+    Promise.all([
+        axios.get('https://api.mercadolibre.com/items/'+req.params.id),
+        axios.get('https://api.mercadolibre.com/items/'+req.params.id+'/description')
+    ])
+    .then(([product, product_description]) =>  res.json(buildItem(product.data, product_description.data)))
+    .catch(error => res.json({ error: 'Item with id '+ req.params.id +' not found.'}))
 })
-
-/**
- * getItem
- */
-function getItem(req) {
-
-    // axios get
-    return axios.get('https://api.mercadolibre.com/items/'+req.params.id)
-}
-
-/**
- * getItemDescription
- */
-function getItemDescription(req) {
-    // axios get
-    return axios.get('https://api.mercadolibre.com/items/'+req.params.id+'/description')
-}
 
 /**
  * return author
