@@ -4,7 +4,7 @@
   "description": "Mercado Libre - Front-End Test Práctico.",
   "main": "app.js",
   "scripts": {
-    "build": "webpack --progress --colors -p",
+    "start": "node app.js",
     "watch": "webpack --progress --colors --watch"
   },
   "repository": {
@@ -30,6 +30,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
     "express": "^4.15.3",
     "normalize.css": "^7.0.0",
     "react": "^15.6.1",

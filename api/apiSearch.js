@@ -1,7 +1,7 @@
 // Module dependencies
 const express = require('express')
 const router = express.Router()
-const request = require('request')
+const axios = require('axios')
 const async = require("async")
 
 // get package.json
@@ -10,62 +10,61 @@ var package = require('../package.json')
 // get items router
 router.get('/items', function (req, res) {
 
-    // request options object
-    const options = {
-        method: 'POST',
-        uri: 'https://api.mercadolibre.com/sites/MLA/search',
-        qs: {
-            q: req.query.q,
-            limit: 4
-        },
-        json: true
+    // check empty param
+    if (!req.query.q) {
+        return
     }
 
-    // request
-    request(options,
-        function (error, response, body) {
-            if (!error && response.statusCode === 200) {
-                res.json(buildSearch(body))
-            } else {
-                res.json(error)
-            }
+    // axios config object
+    const config = {
+        params: {
+            q: req.query.q,
+            limit: 4
         }
-    )
+    }
+
+    // axios get
+    axios.get('https://api.mercadolibre.com/sites/MLA/search', config)
+        .then(function (response) {
+            if (response.status === 200) {
+                res.json(buildSearch(response.data))
+            }
+        })
+        .catch(function (error) {
+            res.json(error)
+        })
 })
 
 // get item router
 router.get('/items/:id', function(req, res) {
 
-    // async
-    async.map(
-        returnUris(req), function(options, callback) {
-        request(options, function(error, response, body) {
-            if (!error && response.statusCode === 200) {
-                callback(null, body)
-            } else {
-                callback(error || response.statusCode)
-            }
-        })
-    }, function(err, results) {
-        if (!err) {
-            res.json(buildItem(results[0], results[1]))
-        } else {
-            res.json(error)
-        }
-    })
+    // check empty param
+    if (!req.params.id) {
+        return
+    }
+
+    // axios all
+    axios.all([getItem(req), getItemDescription(req)])
+        .then(axios.spread(function (product, product_description) {
+            res.json(buildItem(product.data, product_description.data))
+        }))
 })
 
 /**
- * returnUris
+ * getItem
  */
-function returnUris(req) {
-    return [{
-        uri: 'https://api.mercadolibre.com/items/'+req.params.id,
-        json: true
-    }, {
-        uri: 'https://api.mercadolibre.com/items/'+req.params.id+'/description',
-        json: true
-    }]
+function getItem(req) {
+
+    // axios get
+    return axios.get('https://api.mercadolibre.com/items/'+req.params.id)
+}
+
+/**
+ * getItemDescription
+ */
+function getItemDescription(req) {
+    // axios get
+    return axios.get('https://api.mercadolibre.com/items/'+req.params.id+'/description')
 }
 
 /**
@@ -100,7 +99,7 @@ function buildItem(product, description) {
         "condition": product.condition,
         "free_shipping": product.shipping.free_shipping,
         "sold_quantity": product.sold_quantity,
-        "description": description.text
+        "description": description
         }
     }
 
