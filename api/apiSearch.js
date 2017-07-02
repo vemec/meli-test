@@ -2,7 +2,6 @@
 const express = require('express')
 const router = express.Router()
 const axios = require('axios')
-const async = require("async")
 
 // get package.json
 var package = require('../package.json')
@@ -12,7 +11,7 @@ router.get('/items', function (req, res) {
 
     // check empty param
     if (!req.query.q) {
-        return
+        return res.json({ error: 'No param was sent.' })
     }
 
     // axios config object
@@ -26,12 +25,23 @@ router.get('/items', function (req, res) {
     // axios get
     axios.get('https://api.mercadolibre.com/sites/MLA/search', config)
         .then(function (response) {
-            if (response.status === 200) {
-                res.json(buildSearch(response.data))
+            if (response.data.results.length === 0) {
+                const error = res.json({ error: 'There are no results that match your search.' })
+                return Promise.reject(error);
+            }
+            else {
+                if (response.status !== 200) {
+                    const error = res.json({ error: 'Oops! Something failed in the search' })
+                    return Promise.reject(error);
+                }
+
+                if (response.status === 200) {
+                    res.json(buildSearch(response.data))
+                }
             }
         })
         .catch(function (error) {
-            res.json(error)
+            return error
         })
 })
 
@@ -40,14 +50,58 @@ router.get('/items/:id', function(req, res) {
 
     // check empty param
     if (!req.params.id) {
-        return
+        return res.json({ error: 'No item id was submitted.' })
     }
 
+    // get...
+    const f1 = getItem(req)
+        .then(function (product) {
+            if (product.status === 200) {
+                res.json(product.data)
+            }
+            else {
+
+            }
+
+            console.log(product)
+        })
+
+
+    // .then(response => itemInfo.product = response.data)
+    const f2 = getItemDescription(req).then(response => itemInfo.product = response.data)
+
     // axios all
-    axios.all([getItem(req), getItemDescription(req)])
-        .then(axios.spread(function (product, product_description) {
-            res.json(buildItem(product.data, product_description.data))
-        }))
+    Promise.all([f1, f2])
+        .then(function () {
+            res.json(buildItem(itemInfo.product, itemInfo.description))
+        })
+        .catch(function (error) {
+            res.json(error)
+        })
+
+    // axios all
+    // axios.all([
+    //     getItem(req).catch(function (error) {
+    //         return error
+    //     }),
+    //     getItemDescription(req).catch(function (error) {
+    //         return error
+    //     })
+    //     ]).then(axios.spread(function (product, product_description) {
+    //         if (product.response.status == 404) {
+    //             const error = res.json({ error: 'The item with id '+req.params.id+' not found...' })
+    //             return Promise.reject(error);
+    //         }
+    //         else {
+    //             if (product.status === 200 && product_description.status === 200) {
+    //                 res.json(buildItem(product.data, product_description.data))
+    //             }
+    //             else {
+    //                 const error = res.json({ error: 'Oops! Something failed in the search' })
+    //                 return Promise.reject(error);
+    //             }
+    //         }
+    //     }))
 })
 
 /**
