@@ -27,7 +27,10 @@ class SearchResultItem extends React.Component {
                     <div className="result-item-info">
                         <div className="result-item-location">{ this.props.product.state}</div>
                         <div className="result-item-price">
-                            <span>{ this.props.product.price.currency } { Number(parseFloat(this.props.product.price.amount).toFixed(this.props.product.price.amount.decimals)).toLocaleString() } </span>
+                            <span>
+                                { this.props.product.price.currency }
+                                { Number(parseFloat(this.props.product.price.amount).toFixed(this.props.product.price.amount.decimals)).toLocaleString() }
+                            </span>
                             { free_shipping_icon }
                         </div>
                         <h2 className="result-item-title">
