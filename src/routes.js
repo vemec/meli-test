@@ -20,7 +20,7 @@ export default (
         <Layout>
             <Switch>
                 <Route path="/items/:id" component={ (props) => <ItemDetails id={ props.match.params.id } /> } />
-                <Route path="/" component={ (props) => <ResultsContainer /> } />
+                <Route exact path="/" component={ (props) => <ResultsContainer /> } />
                 <Route component= { NotFound } />
             </Switch>
         </Layout>

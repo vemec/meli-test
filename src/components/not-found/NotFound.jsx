@@ -13,9 +13,7 @@ var msg_obj = require('../../messages')
 class Layout extends React.Component {
     render() {
         return (
-            <div>
-                <EmptyState message={ msg_obj('page_not_found') }/>
-            </div>
+            <EmptyState message={ msg_obj('page_not_found') } />
         )
     }
 }
