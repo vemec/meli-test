@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={ this.handleSubmit } className="search" action="a" method="GET" role="search">
+            <form onSubmit={ this.handleSubmit } className="search" action="" role="search">
                 <input
                     aria-label={ this.state.placeholder }
                     placeholder={ this.state.placeholder }
