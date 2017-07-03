@@ -4,9 +4,9 @@
 //
 
 .breadcrumb {
-    padding: 16px 0;
-    font-size: 14px;
     color: $gray-l2;
+    font-size: 14px;
+    padding: 16px 0;
 
     ol {
         margin: 0;
@@ -28,9 +28,9 @@
 }
 
 .breadcrumb-icon {
+    fill: $gray-l2;
     width: 18px;
     height: 18px;
-    fill: $gray-l2;
     margin: 0 5px;
     vertical-align: middle;
 }

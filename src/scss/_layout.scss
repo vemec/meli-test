@@ -4,9 +4,9 @@
 //
 
 .wrap-content {
+    margin: 0 auto 15px;
     max-width: 1000px;
     padding: 0 10px;
-    margin: 0 auto 15px;
 }
 
 .content {
@@ -28,6 +28,6 @@
     border-top: 55px solid $brand;
 
     .logo {
-        left: calc(50% - 26px)
+        left: calc(50% - 26px);
     }
 }

@@ -10,7 +10,7 @@
 
 .item-details-container {
     flex: 1 100%;
-    flex-flow: row wrap
+    flex-flow: row wrap;
 }
 
 .item-details-container > * {
@@ -19,16 +19,16 @@
 
 .item-image {
     img {
-        border-radius: 4px 0 0 0;
-        max-width: 100%;
+        border-radius: 4px 0 0 ;
         height: auto;
+        max-width: 100%;
     }
 }
 
 .item-short-desc {
     flex: 1;
-    padding: 32px;
     line-height: 1;
+    padding: 32px;
 }
 
 .item-info {
@@ -46,21 +46,21 @@
 
 .item-price {
     font-size: 46px;
-    padding: 32px 0;
     line-height: 1;
+    padding: 32px 0;
     white-space: nowrap;
 }
 
 .item-pri-action {
     button {
-        font-size: 16px;
         background-color: $action;
-        border-radius: 4px;
         border: 0;
-        width: 100%;
+        border-radius: 4px;
         color: #fff;
-        padding: 11px;
         cursor: pointer;
+        font-size: 16px;
+        padding: 11px;
+        width: 100%;
     }
 }
 

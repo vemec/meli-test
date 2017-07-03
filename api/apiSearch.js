@@ -48,11 +48,6 @@ router.get('/items', function (req, res) {
 // get item router
 router.get('/items/:id', function(req, res) {
 
-    // check empty param
-    if (!req.params.id) {
-        return res.json({ error: 'No item id was submitted.' })
-    }
-
     Promise.all([
         axios.get('https://api.mercadolibre.com/items/'+req.params.id),
         axios.get('https://api.mercadolibre.com/items/'+req.params.id+'/description')
