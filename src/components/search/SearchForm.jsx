@@ -4,6 +4,23 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { parse } from 'qs'
 
+import actions from '../../redux/actions';
+
+const getQueryString = () => {
+    const searchString = window.location.search.slice(1);
+    return parse(searchString).search || '';
+};
+
+const mapStateToProps = () => ({
+    query: getQueryString(),
+});
+
+const mapDispatchToProps = dispatch => ({
+    onSearch: (query) => {
+        dispatch(actions.searchItems(query));
+    },
+});
+
 /**
  * SearchForm
  */
@@ -11,11 +28,22 @@ class SearchForm extends React.Component {
 
     constructor(props) {
         super(props)
+
         this.state = {
-            placeholder: 'Nunca dejes de buscar'
+            placeholder: 'Nunca dejes de buscar',
+            query: this.props.query,
         }
 
-        this.query = parse(this.props.location.search.substr(1))
+        this.onInput = this.onInput.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps.query !== this.props.query) {
+            this.setState({
+                query: nextProps.query
+            });
+        }
     }
 
     render() {
@@ -28,9 +56,9 @@ class SearchForm extends React.Component {
                     className="search-input"
                     name="header-search"
                     autoComplete="off"
-                    defaultValue={ this.query.search }
-                    onKeyPress={ (e) => this.inputSearch(e) }
-                    ref={ input => this.textInput = input }
+                    onChange={this.onInput}
+                    onKeyPress={this.onSubmit}
+                    value={ this.state.query }
                 />
                 <button role="button" aria-label="Buscar" type="submit" className="search-btn" onClick={ (e) => this.submitQuery(e) }>
                     <i className="search-icon"><span>Buscar</span></i>
@@ -39,30 +67,20 @@ class SearchForm extends React.Component {
         )
     }
 
-    /**
-    * submitQuery hace el search y cambia
-    * la url con el termino buscado
-    */
-    submitQuery (e) {
-        e.preventDefault();
-        if (this.textInput.value) {
-            this.props.history.push("/items?search="+this.textInput.value)
-        }
-        else {
-            this.props.history.push("/")
-        }
+    onInput(e) {
+        this.setState({
+            query: e.target.value
+        });
     }
 
-    /**
-    * inputSearch es un wrapper de submitQuery
-    * solo que espera un "enter" del user
-    * para realizar la busqueda
-    */
-    inputSearch(e) {
+    onSubmit(e) {
         if (e.key == 'Enter') {
-            this.submitQuery(e);
+            e.preventDefault();
+            this.props.onSearch(this.state.query);
         }
     }
 }
 
-export default withRouter(SearchForm)
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(SearchForm)
+);

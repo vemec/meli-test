@@ -4,7 +4,7 @@ const router = express.Router()
 const axios = require('axios')
 
 // get package.json
-var package = require('../package.json')
+var packageJson = require('../package.json')
 
 // get items router
 router.get('/items', function (req, res) {
@@ -27,12 +27,12 @@ router.get('/items', function (req, res) {
         .then(function (response) {
             if (response.data.results.length === 0) {
                 const error = res.json({ error: 'There are no results that match your search.' })
-                return Promise.reject(error);
+                return Promise.reject(error)
             }
             else {
                 if (response.status !== 200) {
                     const error = res.json({ error: 'Oops! Something failed in the search' })
-                    return Promise.reject(error);
+                    return Promise.reject(error)
                 }
 
                 if (response.status === 200) {
@@ -62,8 +62,8 @@ router.get('/items/:id', function(req, res) {
 function returnAuthor() {
     return {
         "author": {
-            "name": package.author.name,
-            "lastname": package.author.last_name
+            "name": packageJson.author.name,
+            "lastname": packageJson.author.last_name
         }
     }
 }
@@ -93,7 +93,10 @@ function buildItem(product, description) {
     }
 
     // return merged object
-    return Object.assign(author_obj,item)
+    return Object.assign(
+        author_obj,
+        item
+    )
 }
 
 /**
@@ -103,25 +106,32 @@ function buildSearch(body) {
     // get author_obj
     var author_obj = returnAuthor()
     var search = {
-        "categories": getCategories(body.filters),
+        "categories": getCategories(body.filters, body.query),
         "items": getProducts(body.results)
     }
 
     // return merged object
-    return Object.assign(author_obj,search)
+    return Object.assign(
+        author_obj,
+        search
+    )
 }
 
 /**
  * getCategories
  */
-function getCategories(filters) {
-    const categories = filters.filter((filter) => { return filter.id == "category"});
+function getCategories(filters, query) {
+
+    // me fijo si tengo contenido en category
+    const categories = filters.filter((filter) => { return filter.id == "category"})
+
+    // si tengo...
     if (categories[0] && categories[0].values && categories[0].values[0]) {
-        return categories[0].values[0].path_from_root.map((category) => {
-            return category.name
-        });
+
+        // array de categorias
+        return categories[0].values[0].path_from_root.map((category) => { return category.name })
     } else {
-        return []
+        return query
     }
 }
 

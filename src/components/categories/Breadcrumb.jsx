@@ -1,5 +1,6 @@
 // Module dependencies
-import React from 'react';
+import React from 'react'
+import { Link } from  'react-router-dom'
 
 /**
  * Breadcrumb
@@ -9,6 +10,7 @@ class Breadcrumb extends React.Component {
 
         // get categories
         let categories = <li></li>
+        let start = <li><Link to="/">Inicio</Link></li>
         if (this.props.categories.length > 0) {
             categories = this.props.categories.map((str, index) =>
                 <li key={ index }>
@@ -20,7 +22,7 @@ class Breadcrumb extends React.Component {
             )
 
             // advices list
-            categories = <ol>{ categories }</ol>
+            categories = <ol>{ start } { categories }</ol>
         }
 
         return (
@@ -33,4 +35,4 @@ class Breadcrumb extends React.Component {
     }
 }
 
-export default Breadcrumb;
+export default Breadcrumb

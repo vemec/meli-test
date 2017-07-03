@@ -10,31 +10,10 @@ import Breadcrumb from '../categories/Breadcrumb.jsx'
  */
 class ItemDetails extends React.Component {
 
-    constructor(props) {
-        super(props)
-        this.setState({
-          product: 0
-        })
-
-        this.productId = this.props.location.pathname.split('/')[2]
-    }
-
-    componentWillMount() {
-        // return fetch
-        fetch(`/api/items/${this.productId}`)
-        .then((response) => {
-            return response.json()
-        })
-        .then((product) => {
-            this.setState({
-              products: product.item
-            })
-        })
-    }
-
     render() {
         return (
             <div>
+                <Breadcrumb categories={1} />
                 <div className="item-details-container base-container">
                     <div className="item-top-data">
                         <div className="item-image">
