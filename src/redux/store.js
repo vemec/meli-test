@@ -1,16 +1,25 @@
 // Module dependencies
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import { combineReducers } from 'redux'
 
 // initial store
 import initialStore from './initialStore'
-import reducer from './reducer'
+import sserch_result from './reducer'
+import product from './reducers/product'
 
+// export
 export function initStore() {
+
+    // merge...
+    const reducers = combineReducers({
+        sserch_result,
+        product
+    })
 
     // create store
     const store = createStore(
-        reducer,
+        reducers,
         initialStore,
         compose(
             applyMiddleware(thunk),

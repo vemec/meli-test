@@ -45,4 +45,4 @@ class SearchResultItem extends React.Component {
     }
 }
 
-export default SearchResultItem;
+export default SearchResultItem
