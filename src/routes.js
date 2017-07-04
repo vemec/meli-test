@@ -16,7 +16,7 @@ export default (
         <Layout>
             <Switch>
                 <Route path="/items/:id" component={ (props) => <ItemDetailsContainer /> } />
-                <Route exact path="/" component={ (props) => <ResultsContainer /> } />
+                <Route path="/" component={ (props) => <ResultsContainer /> } />
                 <Route component= { NotFound } />
             </Switch>
         </Layout>
