@@ -2,10 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { parse } from 'qs'
 
 // actions
-import actions from '../redux/actions'
+import { LOADING_STATUS } from '../redux/actions/search'
 
 // components
 import EmptyState from './empty-state/EmptyState.jsx'
@@ -19,8 +18,7 @@ const mapStateToProps = ({ search: { items, status } }, nextProps) => {
     return ({
         items,
         status,
-        // XXX: the parsing of the search location should be improved
-        showSearchHints: !window.location.search.length,
+        showSearchHints: !window.location.search.length
     })
 }
 
@@ -28,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 /**
- * SearchForm
+ * ResultsContainer
  */
 class ResultsContainer extends React.Component {
 
@@ -42,15 +40,15 @@ class ResultsContainer extends React.Component {
         if (this.props.showSearchHints) {
             console.log('hint')
             content = <EmptyState message={ msg_obj('home') } />
-        } else if (this.props.status === actions.LOADING_STATUS.loading) {
+        } else if (this.props.status === LOADING_STATUS.loading) {
             console.log('loading')
             content = <EmptyStateItem />
-        } else if (this.props.status === actions.LOADING_STATUS.error) {
+        } else if (this.props.status === LOADING_STATUS.error) {
             console.log('error')
             content = <EmptyState message={ msg_obj('error') } />
         } else if (this.props.items.length) {
             console.log('listado')
-            content = <SearchResult products={ this.props.items } />;
+            content = <SearchResult products={ this.props.items } />
         } else if (this.props.items.length === 0) {
             console.log('no hay nada')
             content = <EmptyState message={ msg_obj('product_not_found') } />

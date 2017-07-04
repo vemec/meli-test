@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { parse } from 'qs'
 
-import actions from '../../redux/actions';
+import { searchItems } from '../../redux/actions/search'
 
 const getQueryString = () => {
     const searchString = window.location.search.slice(1)
@@ -17,7 +17,7 @@ const mapStateToProps = () => ({
 
 const mapDispatchToProps = dispatch => ({
     onSearch: (query, history) => {
-        dispatch(actions.searchItems(query, history))
+        dispatch(searchItems(query, history))
     }
 })
 

@@ -1,7 +1,16 @@
+// get request fetch function
+import { promiseFetch } from './promise.fetch'
+
 // actions types
 export const PRODUCT_REQUEST = 'PRODUCT_REQUEST'
 export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS'
 export const PRODUCT_ERROR = 'PRODUCT_ERROR'
+
+export const LOADING_STATUS = {
+    error: 2,
+    success: 1,
+    loading: 3
+}
 
 // actions creators
 export function productRequest() {
@@ -26,21 +35,18 @@ export function productError(error) {
 
 // export
 export function getProduct(id) {
+    return dispatch => {
 
-    // return
-    return Promise.resolve()
-        .then(() => {
-            return fetch('/items/'+id)
-        })
-        .then((response) => {
-            return response.json()
-        })
-        .then((product) => {
-            dispatch(productSuccess(product.items))
-            return product
-        })
-        .catch((error) => {
-            productError(error)
-            return error
-        })
+        // disptch
+        dispatch(productRequest())
+
+        // make request
+        return promiseFetch('/api/items/'+id)
+            .then(data => dispatch(
+                productSuccess(data)
+            ))
+            .catch(error => dispatch(
+                productError()
+            ))
+    }
 }

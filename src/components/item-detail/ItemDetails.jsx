@@ -1,7 +1,6 @@
 // Module dependencies
 import React from 'react'
 import { connect } from 'react-redux'
-import { getProduct } from '../../redux/actions/product'
 
 // components
 import Breadcrumb from '../categories/Breadcrumb.jsx'
@@ -10,16 +9,6 @@ import Breadcrumb from '../categories/Breadcrumb.jsx'
  * ItemDetails
  */
 class ItemDetails extends React.Component {
-
-    componentWillMount() {
-        this.props.getProductDetails(this.props.id)
-    }
-
-    componentWillReceiveProps(prevProps) {
-        if (prevProps.id != this.props.id) {
-            this.props.getProductDetails(this.props.id)
-        }
-    }
 
     render() {
         return (
@@ -49,19 +38,7 @@ class ItemDetails extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
-
-export default connect(
-    (state) => {
-        return {
-            product: state.getProduct.item
-        }
-    },
-    dispatch => ({
-        getProductDetails: function (id){
-            dispatch(getProduct(id));
-        }
-    })
-)(ItemDetails)
+export default ItemDetails

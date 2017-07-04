@@ -5,21 +5,21 @@ import { combineReducers } from 'redux'
 
 // initial store
 import initialStore from './initialStore'
-import sserch_result from './reducer'
 import product from './reducers/product'
+import search from './reducers/search'
 
 // export
 export function initStore() {
 
-    // merge...
-    // const reducers = combineReducers({
-    //     sserch_result,
-    //     product
-    // })
+    // combine...
+    const reducers = combineReducers({
+        search,
+        product
+    })
 
     // create store
     const store = createStore(
-        sserch_result,
+        reducers,
         initialStore,
         compose(
             applyMiddleware(thunk),

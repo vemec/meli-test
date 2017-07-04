@@ -1,25 +1,25 @@
 // import product actions
-import { PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_ERROR, LOADING_STATUS } from '../actions/product'
+import { SAVE_ITEMS, LOADING_ITEMS, LOADING_ERROR, LOADING_STATUS } from '../actions/search'
 
 // export
 module.exports = (state = [], action) => {
     switch (action.type) {
-        case PRODUCT_REQUEST:
+        case LOADING_ITEMS:
             return Object.assign({}, state, {
                 status: LOADING_STATUS.loading,
-                item: {}
+                query: action.query
             })
 
-        case PRODUCT_SUCCESS:
+        case SAVE_ITEMS:
             return Object.assign({}, state, {
                 status: LOADING_STATUS.success,
-                item: action.product.item
+                items: action.items
             })
 
-        case PRODUCT_ERROR:
+        case LOADING_ERROR:
             return Object.assign({}, state, {
                 status: LOADING_STATUS.error,
-                item: []
+                items: []
             })
 
         default:
