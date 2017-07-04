@@ -7,5 +7,5 @@ module.exports = {
 		query: '',
 		status: actions.LOADING_STATUS.success,
 		items: [],
-	},
-};
+	}
+}

@@ -26,7 +26,7 @@ const getQueryString = () => {
 
 // handle back/next button
 window.onpopstate = () => {
-	store.dispatch(actions.searchItems(getQueryString(), false))
+	store.dispatch(actions.searchItems(getQueryString()))
 }
 
 // handle initial route with query string

@@ -12,15 +12,12 @@ import NotFound from './components/not-found/NotFound.jsx'
 // history
 import history from './history';
 
-// get messages
-var msg_obj = require('./messages')
-
 export default (
     <Router history={ history } >
         <Layout>
             <Switch>
                 <Route path="/items/:id" component={ (props) => <ItemDetails id={ props.match.params.id } /> } />
-                <Route exact path="/" component={ (props) => <ResultsContainer /> } />
+                <Route path="/" component={ (props) => <ResultsContainer /> } />
                 <Route component= { NotFound } />
             </Switch>
         </Layout>

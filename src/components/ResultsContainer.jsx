@@ -21,11 +21,11 @@ const mapStateToProps = ({ search: { items, status } }, nextProps) => {
         status,
         // XXX: the parsing of the search location should be improved
         showSearchHints: !window.location.search.length,
-    });
-};
+    })
+}
 
 const mapDispatchToProps = dispatch => ({
-});
+})
 
 /**
  * SearchForm
@@ -40,14 +40,19 @@ class ResultsContainer extends React.Component {
         let content = null;
 
         if (this.props.showSearchHints) {
+            console.log('hint')
             content = <EmptyState message={ msg_obj('home') } />
         } else if (this.props.status === actions.LOADING_STATUS.loading) {
+            console.log('loading')
             content = <EmptyStateItem />
         } else if (this.props.status === actions.LOADING_STATUS.error) {
+            console.log('error')
             content = <EmptyState message={ msg_obj('error') } />
         } else if (this.props.items.length) {
-            content = <SearchResult products={ this.props.items }/>;
-        } else {
+            console.log('listado')
+            content = <SearchResult products={ this.props.items } />;
+        } else if (this.props.items.length === 0) {
+            console.log('no hay nada')
             content = <EmptyState message={ msg_obj('product_not_found') } />
         }
 
@@ -56,6 +61,4 @@ class ResultsContainer extends React.Component {
     }
 }
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ResultsContainer)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResultsContainer))

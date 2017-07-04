@@ -12,14 +12,14 @@ import product from './reducers/product'
 export function initStore() {
 
     // merge...
-    const reducers = combineReducers({
-        sserch_result,
-        product
-    })
+    // const reducers = combineReducers({
+    //     sserch_result,
+    //     product
+    // })
 
     // create store
     const store = createStore(
-        reducers,
+        sserch_result,
         initialStore,
         compose(
             applyMiddleware(thunk),

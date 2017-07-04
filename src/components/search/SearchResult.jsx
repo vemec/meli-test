@@ -6,9 +6,6 @@ import { withRouter } from 'react-router-dom'
 import Breadcrumb from '../categories/Breadcrumb.jsx'
 import SearchResultItem from './SearchResultItem.jsx'
 
-// get messages
-var msg_obj = require('../../messages')
-
 /**
  * SearchResult
  */

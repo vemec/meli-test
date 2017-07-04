@@ -36,6 +36,6 @@ app.get('*', function (req, res) {
 })
 
 // Listen to...
-var server = app.listen(3000, function () {
+var server = app.listen(port, function () {
   console.log('- MeliTest app listening on port %s!', server.address().port);
 })

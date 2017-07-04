@@ -9,31 +9,38 @@ const LOADING_STATUS = {
     error: 2,
     success: 1,
     loading: 3
-};
+}
 
 const saveItems = (items) => ({
     items,
     type: SAVE_ITEMS
-});
+})
 
 const loadingItems = (query) => ({
     query,
     type: LOADING_ITEMS
-});
+})
 
 const loadingError = (error) => ({
     error,
     type: LOADING_ERROR
-});
+})
 
-const searchItems = (query, pushHistory = true) => (dispatch, getState) => {
-    // debugger;
+const searchItems = (query, history) => (dispatch, getState) => {
+    query = query ? query.trim() : query
 
-    if (pushHistory) {
-        history.push('/items?search=' + query)
-    }
+    if (history && !query) {
+		const { pathname, search } = history.location
+		const alreadyInRootLocation = pathname === '/' && search === ''
+		
+		return alreadyInRootLocation ? false : history.push('/')
+	}
 
-    dispatch(loadingItems(query));
+    if (history) {
+		history.push('/items?search=' + query)
+	}
+
+    dispatch(loadingItems(query))
 
     return Promise.resolve()
         .then(() => {
@@ -43,11 +50,11 @@ const searchItems = (query, pushHistory = true) => (dispatch, getState) => {
             return response.json()
         })
         .then((products) => {
-            dispatch(saveItems(products.items));
+            dispatch(saveItems(products.items))
             return products
         })
         .catch((error) => {
-            loadingError(error);
+            loadingError(error)
             return error
         })
 }
@@ -60,5 +67,5 @@ module.exports = {
     saveItems,
     loadingItems,
     loadingError,
-    searchItems,
+    searchItems
 }

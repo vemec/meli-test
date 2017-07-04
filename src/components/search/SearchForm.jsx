@@ -16,8 +16,8 @@ const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onSearch: (query) => {
-        dispatch(actions.searchItems(query))
+    onSearch: (query, history) => {
+        dispatch(actions.searchItems(query, history))
     }
 })
 
@@ -75,7 +75,7 @@ class SearchForm extends React.Component {
     handleSubmit(event) {
         if (event.key == 'Enter') {
             event.preventDefault()
-            this.props.onSearch(this.state.query)
+            this.props.onSearch(this.state.query, this.props.history)
         }
     }
 }
