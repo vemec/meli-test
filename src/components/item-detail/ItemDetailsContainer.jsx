@@ -10,13 +10,14 @@ import { getProduct, LOADING_STATUS } from '../../redux/actions/product'
 import EmptyState from '../empty-state/EmptyState.jsx'
 import EmptyStateItem from '../empty-state/EmptyStateItem.jsx'
 import ItemDetails from './ItemDetails.jsx'
+import Breadcrumb from '../categories/Breadcrumb.jsx'
 
 // get messages
 var msg_obj = require('../../messages')
 
-const mapStateToProps = ({ product: { product, status }, nextProps }) => {
+const mapStateToProps = ({ item: { item, status }, nextProps }) => {
     return ({
-        product,
+        item,
         status
     })
 }
@@ -46,7 +47,11 @@ class ItemDetailsContainer extends React.Component {
             content = <EmptyState message={ msg_obj('error') } />
         } else if (this.props.item.length) {
             console.log('listado')
-            content = <ItemDetails product={ this.props.item } />
+            content =
+                <div>
+                    <Breadcrumb />
+                    <ItemDetails product={ this.props.item } />
+                </div>
         } else if (this.props.item.length === 0) {
             console.log('no hay nada')
             content = <EmptyState message={ msg_obj('product_not_found') } />

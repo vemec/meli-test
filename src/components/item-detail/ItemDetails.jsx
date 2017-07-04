@@ -12,7 +12,6 @@ class ItemDetails extends React.Component {
     render() {
         return (
             <div>
-                <Breadcrumb categories={1} />
                 <div className="item-details-container base-container">
                     <div className="item-top-data">
                         <div className="item-image">
