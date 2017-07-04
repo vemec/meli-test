@@ -15,7 +15,7 @@ import Breadcrumb from '../categories/Breadcrumb.jsx'
 // get messages
 var msg_obj = require('../../messages')
 
-const mapStateToProps = ({ item: { item, status }, nextProps }) => {
+const mapStateToProps = ({ product: { item, status }, nextProps }) => {
     return ({
         item,
         status
@@ -45,11 +45,11 @@ class ItemDetailsContainer extends React.Component {
         } else if (this.props.status === LOADING_STATUS.error) {
             console.log('error')
             content = <EmptyState message={ msg_obj('error') } />
-        } else if (this.props.item.length) {
+        } else if (this.props.item) {
             console.log('listado')
             content =
                 <div>
-                    <Breadcrumb />
+                    <Breadcrumb categories={ 1 } />
                     <ItemDetails product={ this.props.item } />
                 </div>
         } else if (this.props.item.length === 0) {
