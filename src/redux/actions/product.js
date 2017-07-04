@@ -13,7 +13,7 @@ export function productRequest() {
 export function productSuccess(product) {
     return {
         type: PRODUCT_SUCCESS,
-        product: json.item
+        product: product
     }
 }
 
@@ -30,17 +30,17 @@ export function getProduct(id) {
     // return
     return Promise.resolve()
         .then(() => {
-            return fetch(`/items/${id}`)
+            return fetch('/items/'+id)
         })
         .then((response) => {
             return response.json()
         })
         .then((product) => {
-            dispatch(productSuccess(product.items));
+            dispatch(productSuccess(product.items))
             return product
         })
         .catch((error) => {
-            productError(error);
+            productError(error)
             return error
         })
 }
