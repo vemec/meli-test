@@ -10,6 +10,7 @@ import { LOADING_STATUS } from '../redux/actions/search'
 import EmptyState from './empty-state/EmptyState.jsx'
 import EmptyStateItem from './empty-state/EmptyStateItem.jsx'
 import SearchResult from './search/SearchResult.jsx'
+import Breadcrumb from './categories/Breadcrumb.jsx'
 
 // get messages
 var msg_obj = require('../messages')
@@ -38,19 +39,18 @@ class ResultsContainer extends React.Component {
         let content = null;
 
         if (this.props.showSearchHints) {
-            console.log('hint')
             content = <EmptyState message={ msg_obj('home') } />
         } else if (this.props.status === LOADING_STATUS.loading) {
-            console.log('loading')
             content = <EmptyStateItem />
         } else if (this.props.status === LOADING_STATUS.error) {
-            console.log('error')
             content = <EmptyState message={ msg_obj('error') } />
-        } else if (this.props.items.length) {
-            console.log('listado')
-            content = <SearchResult products={ this.props.items } />
-        } else if (this.props.items.length === 0) {
-            console.log('no hay nada')
+        } else if (this.props.items.items) {
+            content =
+                <div>
+                    <Breadcrumb categories={ this.props.items.categories } />
+                    <SearchResult products={ this.props.items.items } />
+                </div>
+        } else  {
             content = <EmptyState message={ msg_obj('product_not_found') } />
         }
 

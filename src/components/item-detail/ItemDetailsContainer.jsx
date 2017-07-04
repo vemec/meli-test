@@ -36,8 +36,8 @@ class ItemDetailsContainer extends React.Component {
     }
 
     componentDidMount() {
-        const product_id = window.location.pathname.split('/')[2]
-        getProduct(product_id)
+        const item = window.location.pathname.split('/')[2]
+        getProduct(item)
     }
 
     // this.setState({

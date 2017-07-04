@@ -10,7 +10,6 @@ module.exports = {
         items: []
     },
     product: {
-        product_id: '',
         status: P_LOADING_STATUS.success,
         item: []
     }

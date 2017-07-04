@@ -13,6 +13,7 @@ module.exports = (state = [], action) => {
         case SAVE_ITEMS:
             return Object.assign({}, state, {
                 status: LOADING_STATUS.success,
+                categories: action.categories,
                 items: action.items
             })
 

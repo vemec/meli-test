@@ -26,7 +26,8 @@ export function saveItems(items) {
 export function loadingItems(query) {
     return {
         type: LOADING_ITEMS,
-        query
+        categories: query.categories,
+        items: query.items
     }
 }
 

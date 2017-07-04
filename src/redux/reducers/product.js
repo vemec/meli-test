@@ -13,7 +13,7 @@ module.exports = (state = [], action) => {
         case PRODUCT_SUCCESS:
             return Object.assign({}, state, {
                 status: LOADING_STATUS.success,
-                item: action.product.item
+                item: action.item.item
             })
 
         case PRODUCT_ERROR:

@@ -3,7 +3,6 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 // components
-import Breadcrumb from '../categories/Breadcrumb.jsx'
 import SearchResultItem from './SearchResultItem.jsx'
 
 /**
@@ -17,7 +16,6 @@ class SearchResult extends React.Component {
         let searchResultItems = this.props.products.map(product => <SearchResultItem key={ product.id } product={ product } />)
         search_result =
             <div>
-                <Breadcrumb categories={ this.props.categories } />
                 <div className="search-result-container base-container">
                     <ol>{ searchResultItems }</ol>
                 </div>

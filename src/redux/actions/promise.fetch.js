@@ -17,6 +17,3 @@ export function promiseFetch(url) {
             return error
         })
 }
-
-
-

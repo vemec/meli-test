@@ -19,10 +19,10 @@ export function productRequest() {
     }
 }
 
-export function productSuccess(product) {
+export function productSuccess(item) {
     return {
         type: PRODUCT_SUCCESS,
-        product: product
+        item
     }
 }
 
@@ -42,11 +42,11 @@ export function getProduct(id) {
 
         // make request
         return promiseFetch('/api/items/'+id)
-            .then(data => dispatch(
-                productSuccess(data)
+            .then(item => dispatch(
+                productSuccess(item)
             ))
             .catch(error => dispatch(
-                productError()
+                productError(error)
             ))
     }
 }
