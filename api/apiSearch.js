@@ -80,15 +80,15 @@ function buildItem(product, description) {
             "id": product.id,
             "title": product.title,
             "price": {
-            "currency": product.currency_id,
-            "amount": product.price,
-            "decimals": 2,
-        },
-        "picture": product.thumbnail,
-        "condition": product.condition,
-        "free_shipping": product.shipping.free_shipping,
-        "sold_quantity": product.sold_quantity,
-        "description": description
+                "currency": product.currency_id,
+                "amount": product.price,
+                "decimals": 2,
+            },
+            "picture": product.thumbnail,
+            "condition": product.condition,
+            "free_shipping": product.shipping.free_shipping,
+            "sold_quantity": product.sold_quantity,
+            "description": description
         }
     }
 

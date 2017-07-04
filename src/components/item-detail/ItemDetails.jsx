@@ -1,6 +1,5 @@
 // Module dependencies
 import React from 'react'
-import { connect } from 'react-redux'
 
 // components
 import Breadcrumb from '../categories/Breadcrumb.jsx'

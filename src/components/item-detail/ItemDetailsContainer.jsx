@@ -29,37 +29,28 @@ const mapDispatchToProps = dispatch => ({ })
 class ItemDetailsContainer extends React.Component {
 
     constructor(props) {
-        super(props);
-        this.state = {
-            product: []
-        }
+        super(props)
     }
-
-    componentDidMount() {
-        const item = window.location.pathname.split('/')[2]
-        getProduct(item)
-    }
-
-    // this.setState({
-    //     product:
-    // })
 
     render() {
         let content = <div></div>
 
-        // if (this.props.status === LOADING_STATUS.loading) {
-        //     console.log('loading')
-        //     content = <EmptyStateItem />
-        // } else if (this.props.status === LOADING_STATUS.error) {
-        //     console.log('error')
-        //     content = <EmptyState message={ msg_obj('error') } />
-        // } else if (this.props.item.length) {
-        //     console.log('listado')
-        //     content = <ItemDetails product={ this.props.item } />
-        // } else if (this.props.item.length === 0) {
-        //     console.log('no hay nada')
-        //     content = <EmptyState message={ msg_obj('product_not_found') } />
-        // }
+        console.log(this.props.status)
+        console.log(this.props)
+
+        if (this.props.status === LOADING_STATUS.loading) {
+            console.log('loading')
+            content = <EmptyStateItem />
+        } else if (this.props.status === LOADING_STATUS.error) {
+            console.log('error')
+            content = <EmptyState message={ msg_obj('error') } />
+        } else if (this.props.item.length) {
+            console.log('listado')
+            content = <ItemDetails product={ this.props.item } />
+        } else if (this.props.item.length === 0) {
+            console.log('no hay nada')
+            content = <EmptyState message={ msg_obj('product_not_found') } />
+        }
 
         // return
         return content;
