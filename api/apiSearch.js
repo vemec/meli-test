@@ -86,7 +86,10 @@ function returnAuthor() {
  */
 function buildItem(product, categories, description) {
 
-    console.log()
+    var picture = product.thumbnail
+    if (product.pictures) {
+        picture = getBestPictureForItem(product.pictures)
+    }
 
     // get author_obj
     var author_obj = returnAuthor()
@@ -100,7 +103,7 @@ function buildItem(product, categories, description) {
                 "decimals": 2,
             },
             "categories": getCategoriesForItem(categories),
-            "picture": getBestPictureForItem(product.pictures),
+            "picture": picture,
             "condition": product.condition,
             "free_shipping": product.shipping.free_shipping,
             "sold_quantity": product.sold_quantity,
