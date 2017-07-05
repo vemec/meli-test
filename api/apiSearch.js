@@ -6,6 +6,9 @@ const axios = require('axios')
 // get package.json
 var packageJson = require('../package.json')
 
+// get url config
+var apiConfig = require('./config.json')
+
 // get items router
 router.get('/items', function (req, res) {
 
@@ -23,7 +26,7 @@ router.get('/items', function (req, res) {
     }
 
     // axios get
-    axios.get('https://api.mercadolibre.com/sites/MLA/search', config)
+    axios.get(apiConfig.url.search, config)
         .then(function (response) {
             if (response.data.results.length === 0) {
                 const error = res.json({ error: 'There are no results that match your search.' })
@@ -49,8 +52,8 @@ router.get('/items', function (req, res) {
 router.get('/items/:id', function(req, res) {
 
     Promise.all([
-        axios.get('https://api.mercadolibre.com/items/'+req.params.id),
-        axios.get('https://api.mercadolibre.com/items/'+req.params.id+'/description')
+        axios.get(apiConfig.url.items+req.params.id),
+        axios.get(apiConfig.url.items+req.params.id+'/description')
     ])
     .then(([product, product_description]) =>  res.json(buildItem(product.data, product_description.data)))
     .catch(error => res.json({ error: 'Item with id '+ req.params.id +' not found.'}))
