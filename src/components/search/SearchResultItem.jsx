@@ -2,9 +2,6 @@
 import React from 'react'
 import { Link } from  'react-router-dom'
 
-// action
-import { getProduct } from '../../redux/actions/product'
-
 /**
  * SearchResultItem
  */

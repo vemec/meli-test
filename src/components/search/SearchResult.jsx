@@ -10,7 +10,6 @@ import SearchResultItem from './SearchResultItem.jsx'
  */
 class SearchResult extends React.Component {
     render() {
-
         // search result
         let search_result;
         let searchResultItems = this.props.products.map(product => <SearchResultItem key={ product.id } product={ product } />)

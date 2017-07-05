@@ -17,7 +17,7 @@ export default (
             <Switch>
                 <Route path="/items/:id" component={ (props) => <ItemDetailsContainer /> }  />
                 <Route path="/" component={ (props) => <SearchResultsContainer /> }  />
-                <Route component= { NotFound } />
+                <Route status={404} component={ NotFound } />
             </Switch>
         </Layout>
     </Router>
