@@ -27,9 +27,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 /**
- * ResultsContainer
+ * SearchResultsContainer
  */
-class ResultsContainer extends React.Component {
+class SearchResultsContainer extends React.Component {
 
     constructor(props) {
         super(props)
@@ -59,4 +59,4 @@ class ResultsContainer extends React.Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResultsContainer))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchResultsContainer))
