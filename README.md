@@ -1,5 +1,12 @@
 # Test Práctico - Frontend
 
+## Quickstart
+
+```
+  npm install    // Install dependencies
+  npm run build  // To build the app
+  npm run start  // To start de app
+```
 
 ## Stack tecnológico
 

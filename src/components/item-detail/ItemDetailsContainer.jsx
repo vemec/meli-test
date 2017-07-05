@@ -13,7 +13,7 @@ import ItemDetails from './ItemDetails.jsx'
 import Breadcrumb from '../categories/Breadcrumb.jsx'
 
 // get messages
-var msg_obj = require('../../messages')
+var msg_obj = require('../../toolbox/messages')
 
 const mapStateToProps = ({ product: { item, status }, nextProps }) => {
     return ({

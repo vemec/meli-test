@@ -38,11 +38,12 @@ class EmptyStateItemDetails extends React.Component {
                         <div className="item-description-text">
                             <div className="pulse empty-state-block empty-state--description"></div>
                             <div className="pulse empty-state-block empty-state--description-al"></div>
+                            <div className="pulse empty-state-block empty-state--description-al2"></div>
                             <div className="pulse empty-state-block empty-state--description-al"></div>
                             <div className="pulse empty-state-block empty-state--description"></div>
-                            <div className="pulse empty-state-block empty-state--description"></div>
+                            <div className="pulse empty-state-block empty-state--description-al2"></div>
                             <div className="pulse empty-state-block empty-state--description-al"></div>
-                            <div className="pulse empty-state-block empty-state--description-al"></div>
+                            <div className="pulse empty-state-block empty-state--description-al2"></div>
                         </div>
                     </div>
                 </div>

@@ -15,8 +15,7 @@ class SearchResultItem extends React.Component {
         // item price
         let price_data =
             <span>
-                $
-                {' ' + Number.parseInt(price[0]).toLocaleString() }<sup>{ price[1] ? price[1] : '00' }</sup>
+                {'$ ' + Number.parseInt(price[0]).toLocaleString() }<sup>{ price[1] ? price[1] : '00' }</sup>
             </span>
 
         // get free_shipping_icon icon

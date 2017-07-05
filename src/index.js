@@ -20,45 +20,30 @@ import './scss/index.scss'
 const store = initStore()
 
 // get query string from current window url
-const getLocation = () => {
-    if (window.location.search) {
-        const searchString = window.location.search.slice(1);
-        return {
-            type: 'search',
-            value: qs.parse(searchString).search || ''
-        }
-
-    } else if (window.location.pathname.split('/')[1] === 'items') {
-        const productId = window.location.pathname.split('/')[2]
-        return {
-            type: 'product',
-            value: productId
-        }
-    } else {
-        return {
-            type: null,
-            value: ''
-        }
-    }
+const getSearchString = () => {
+	const searchString = window.location.search.slice(1)
+	return qs.parse(searchString).search || ''
 }
 
-// handle back/next button
+// get Item from URL
+const getItemIdFromUrl = () => {
+    const productId = window.location.pathname.split('/')[2]
+    return productId
+}
+
 window.onpopstate = () => {
-
-    let location = getLocation()
-    if (location.type === 'search') {
-        store.dispatch(searchItems(location.value))
-    } else if (location.type === 'product') {
-        store.dispatch(getProduct(location.value))
-    }
+	store.dispatch(searchItems(getSearchString()))
 }
 
-// handle initial route with query string
-const location = getLocation()
-if (location.type === 'search') {
-    store.dispatch(searchItems(location.value))
-} else if (location.type === 'product') {
-    store.dispatch(getProduct(location.value))
+const query = getSearchString()
+const initialItemsSearch = query && window.location.pathname === '/items'
+const initialItemInfo = !window.location.search && window.location.pathname.split('/')[1] === 'items'
+
+// dispach...
+if (initialItemsSearch) {
+	store.dispatch(searchItems(getSearchString()))
+} else if (initialItemInfo) {
+	store.dispatch(getProduct(getItemIdFromUrl()))
 }
 
 render(

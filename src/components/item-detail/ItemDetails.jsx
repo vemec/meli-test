@@ -19,8 +19,7 @@ class ItemDetails extends React.Component {
         // item price
         let price_data =
             <div className="item-price">
-                $
-                {' ' + Number.parseInt(price[0]).toLocaleString() }<sup>{ price[1] ? price[1] : '00' }</sup>
+                {'$ ' + Number.parseInt(price[0]).toLocaleString() }<sup>{ price[1] ? price[1] : '00' }</sup>
             </div>
 
         // Iten status

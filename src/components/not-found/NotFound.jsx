@@ -5,7 +5,7 @@ import React from 'react';
 import EmptyState from '../empty-state/EmptyState.jsx'
 
 // get messages
-var msg_obj = require('../../messages')
+var msg_obj = require('../../toolbox/messages')
 
 /**
  * App Layout

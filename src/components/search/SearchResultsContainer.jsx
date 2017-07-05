@@ -4,16 +4,16 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 // actions
-import { LOADING_STATUS } from '../redux/actions/search'
+import { LOADING_STATUS } from '../../redux/actions/search'
 
 // components
-import EmptyState from './empty-state/EmptyState.jsx'
-import EmptyStateItem from './empty-state/EmptyStateItem.jsx'
-import SearchResult from './search/SearchResult.jsx'
-import Breadcrumb from './categories/Breadcrumb.jsx'
+import EmptyState from '../empty-state/EmptyState.jsx'
+import EmptyStateItem from '../empty-state/EmptyStateItem.jsx'
+import SearchResult from '../search/SearchResult.jsx'
+import Breadcrumb from '../categories/Breadcrumb.jsx'
 
 // get messages
-var msg_obj = require('../messages')
+var msg_obj = require('../../toolbox/messages')
 
 const mapStateToProps = ({ search: { items, status } }, nextProps) => {
     return ({
@@ -23,8 +23,7 @@ const mapStateToProps = ({ search: { items, status } }, nextProps) => {
     })
 }
 
-const mapDispatchToProps = dispatch => ({
-})
+const mapDispatchToProps = dispatch => ({ })
 
 /**
  * SearchResultsContainer
