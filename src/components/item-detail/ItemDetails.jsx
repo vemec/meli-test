@@ -22,7 +22,7 @@ class ItemDetails extends React.Component {
                 $
                 {' ' + Number.parseInt(price[0]).toLocaleString() }<sup>{ price[1] ? price[1] : '00' }</sup>
             </div>
-        
+
         // Iten status
         let item_status = (this.props.product.condition === 'new' ? 'Nuevo' : 'Usado' )
         let item_info =

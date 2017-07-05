@@ -8,7 +8,7 @@ import { getProduct, LOADING_STATUS } from '../../redux/actions/product'
 
 // components
 import EmptyState from '../empty-state/EmptyState.jsx'
-import EmptyStateItem from '../empty-state/EmptyStateItem.jsx'
+import EmptyStateItemDetails from '../empty-state/EmptyStateItemDetails.jsx'
 import ItemDetails from './ItemDetails.jsx'
 import Breadcrumb from '../categories/Breadcrumb.jsx'
 
@@ -36,7 +36,7 @@ class ItemDetailsContainer extends React.Component {
     render() {
         let content = <div></div>
         if (this.props.status === LOADING_STATUS.loading) {
-            content = <EmptyStateItem />
+            content = <EmptyStateItemDetails />
         } else if (this.props.status === LOADING_STATUS.error) {
             content = <EmptyState message={ msg_obj('error') } />
         } else if (this.props.item) {

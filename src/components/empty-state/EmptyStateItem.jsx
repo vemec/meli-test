@@ -14,7 +14,7 @@ class EmptyState extends React.Component {
                 <section className="breadcrumb">
                     <nav className="breadcrumb-nav">
                         <div className="breadcrumb-list">
-                            <div className="pulse empty-state-text--breadcrumb"></div>
+                            <div className="pulse empty-state-block  empty-state--breadcrumb"></div>
                         </div>
                     </nav>
                 </section>
