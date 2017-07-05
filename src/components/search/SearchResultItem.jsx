@@ -28,11 +28,11 @@ class SearchResultItem extends React.Component {
             <li className="result-item">
                 <div className="result-item-container">
                     <div className="result-item-image">
-                        <Link to={ '/items/'+this.props.product.id } >
+                        <a href={ '/items/'+this.props.product.id } >
                             <figure>
                                 <img src={ this.props.product.picture } alt={ this.props.product.title } />
                             </figure>
-                        </Link>
+                        </a>
                     </div>
                     <div className="result-item-info">
                         <div className="result-item-location">{ this.props.product.state}</div>
@@ -41,9 +41,9 @@ class SearchResultItem extends React.Component {
                             { free_shipping_icon }
                         </div>
                         <h2 className="result-item-title">
-                            <Link to={ '/items/'+this.props.product.id } >
+                            <a href={ '/items/'+this.props.product.id } >
                                 { this.props.product.title }
-                            </Link>
+                            </a>
                         </h2>
                     </div>
                 </div>
