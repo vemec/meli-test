@@ -8,6 +8,17 @@ import { Link } from  'react-router-dom'
 class SearchResultItem extends React.Component {
     render() {
 
+        // format price
+        let price = this.props.product.price.amount+''
+        price = price.split('.')
+
+        // item price
+        let price_data =
+            <span>
+                $
+                {' ' + Number.parseInt(price[0]).toLocaleString() }<sup>{ price[1] ? price[1] : '00' }</sup>
+            </span>
+
         // get free_shipping_icon icon
         let free_shipping_icon;
         if (this.props.product.free_shipping) {
@@ -27,10 +38,7 @@ class SearchResultItem extends React.Component {
                     <div className="result-item-info">
                         <div className="result-item-location">{ this.props.product.state}</div>
                         <div className="result-item-price">
-                            <span>
-                                { this.props.product.price.currency }
-                                { Number(parseFloat(this.props.product.price.amount).toFixed(this.props.product.price.amount.decimals)).toLocaleString() }
-                            </span>
+                            { price_data }
                             { free_shipping_icon }
                         </div>
                         <h2 className="result-item-title">

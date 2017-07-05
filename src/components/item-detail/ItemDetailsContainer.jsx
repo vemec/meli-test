@@ -35,25 +35,17 @@ class ItemDetailsContainer extends React.Component {
 
     render() {
         let content = <div></div>
-
-        console.log(this.props.status)
-        console.log(this.props)
-
         if (this.props.status === LOADING_STATUS.loading) {
-            console.log('loading')
             content = <EmptyStateItem />
         } else if (this.props.status === LOADING_STATUS.error) {
-            console.log('error')
             content = <EmptyState message={ msg_obj('error') } />
         } else if (this.props.item) {
-            console.log('listado')
             content =
                 <div>
                     <Breadcrumb categories={ 1 } />
                     <ItemDetails product={ this.props.item } />
                 </div>
         } else if (this.props.item.length === 0) {
-            console.log('no hay nada')
             content = <EmptyState message={ msg_obj('product_not_found') } />
         }
 
