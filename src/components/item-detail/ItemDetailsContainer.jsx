@@ -42,7 +42,7 @@ class ItemDetailsContainer extends React.Component {
         } else if (this.props.item) {
             content =
                 <div>
-                    <Breadcrumb categories={ 1 } />
+                    <Breadcrumb categories={ this.props.item.categories } />
                     <ItemDetails product={ this.props.item } />
                 </div>
         } else if (this.props.item.length === 0) {

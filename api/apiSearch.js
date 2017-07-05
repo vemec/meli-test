@@ -51,12 +51,22 @@ router.get('/items', function (req, res) {
 // get item router
 router.get('/items/:id', function(req, res) {
 
-    Promise.all([
-        axios.get(apiConfig.url.items+req.params.id),
-        axios.get(apiConfig.url.items+req.params.id+'/description')
-    ])
-    .then(([product, product_description]) =>  res.json(buildItem(product.data, product_description.data)))
-    .catch(error => res.json({ error: 'Item with id '+ req.params.id +' not found.'}))
+    // get first
+    axios.get(apiConfig.url.items+req.params.id)
+        .then(function(response) {
+
+            // get all data
+            Promise.all([
+                axios.get(apiConfig.url.items+req.params.id),
+                axios.get(apiConfig.url.categories+response.data.category_id),
+                axios.get(apiConfig.url.items+req.params.id+'/description')
+            ])
+            .then(([product, product_categories , product_description]) =>  res.json(buildItem(product.data, product_categories.data, product_description.data)))
+            .catch(error => res.json({ error: 'Item with id '+ req.params.id +' not found.'}))
+        })
+        .catch(function (error) {
+            return error
+        })
 })
 
 /**
@@ -74,7 +84,9 @@ function returnAuthor() {
 /**
  * buildItem firmado
  */
-function buildItem(product, description) {
+function buildItem(product, categories, description) {
+
+    console.log()
 
     // get author_obj
     var author_obj = returnAuthor()
@@ -87,7 +99,8 @@ function buildItem(product, description) {
                 "amount": product.price,
                 "decimals": 2,
             },
-            "picture": product.thumbnail,
+            "categories": getCategoriesForItem(categories),
+            "picture": getBestPictureForItem(product.pictures),
             "condition": product.condition,
             "free_shipping": product.shipping.free_shipping,
             "sold_quantity": product.sold_quantity,
@@ -121,7 +134,7 @@ function buildSearch(body) {
 }
 
 /**
- * getCategories
+ * getCategories for search
  */
 function getCategories(filters, query) {
 
@@ -137,6 +150,32 @@ function getCategories(filters, query) {
         var result = [query]
         return result
     }
+}
+
+/**
+ * getCategoriesForItem for product
+ */
+function getCategoriesForItem(categories) {
+    // array de categorias
+    return categories.path_from_root.map((category) => { return category.name })
+}
+
+/**
+ * getCategoriesForItem for product
+ */
+function getBestPictureForItem(pictures) {
+
+    var big = 0
+    var image_url = ''
+    pictures.forEach(function(pics) {
+        if(big < parseInt(pics['max_size'].split('x')[0])) {
+            big = parseInt(pics['max_size'].split('x')[0])
+            image_url = pics['url']
+        }
+    })
+
+    // return big img
+    return image_url
 }
 
 /**
