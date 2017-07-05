@@ -4,7 +4,7 @@
 //
 
 .search-result-container {
-    background-color: #fff;
+    background-color: $white;
     line-height: 1;
 
     ol {
@@ -72,7 +72,6 @@
     margin: 3px 0 0 10px;
     background-image: url('/public/images/ic_shipping.png');
     @include high-res-img('/public/images/ic_shipping@2x.png', 18px, 18px);
-    background-repeat: no-repeat;
     height: 18px;
     width: 18px;
 }

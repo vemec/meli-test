@@ -19,7 +19,7 @@
 
 .item-image {
     img {
-        border-radius: 4px 0 0 ;
+        border-radius: 4px 0 0;
         height: auto;
         max-width: 100%;
     }
@@ -63,7 +63,7 @@
         background-color: $action;
         border: 0;
         border-radius: 4px;
-        color: #fff;
+        color: $white;
         cursor: pointer;
         font-size: 16px;
         padding: 11px;

@@ -6,13 +6,13 @@ import { parse } from 'qs'
 
 import { searchItems } from '../../redux/actions/search'
 
-const getSearchParam = () => {
+const getSearchString = () => {
     const searchString = window.location.search.slice(1)
     return parse(searchString).search || ''
 }
 
 const mapStateToProps = () => ({
-    query: getSearchParam()
+    query: getSearchString()
 })
 
 const mapDispatchToProps = dispatch => ({
