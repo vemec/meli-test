@@ -31,8 +31,13 @@ const getItemIdFromUrl = () => {
     return productId
 }
 
+// on history change
 window.onpopstate = () => {
+	if (initialItemsSearch) {
 	store.dispatch(searchItems(getSearchString()))
+    } else if (initialItemInfo) {
+        store.dispatch(getProduct(getItemIdFromUrl()))
+    }
 }
 
 const query = getSearchString()

@@ -15,8 +15,8 @@ export default (
     <Router history={ history } >
         <Layout>
             <Switch>
-                <Route path="/items/:id" component={ (props) => <ItemDetailsContainer /> } />
-                <Route path="/" component={ (props) => <SearchResultsContainer /> } />
+                <Route path="/items/:id" component={ (props) => <ItemDetailsContainer /> }  />
+                <Route path="/" component={ (props) => <SearchResultsContainer /> }  />
                 <Route component= { NotFound } />
             </Switch>
         </Layout>

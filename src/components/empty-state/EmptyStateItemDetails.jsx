@@ -19,7 +19,7 @@ class EmptyStateItemDetails extends React.Component {
                 <div className="item-details-container base-container">
                     <div className="item-top-data">
                         <div className="item-image">
-                            <div className="pulse empty-state-block empty-state-image"></div>
+                            <div className="pulse empty-state-block empty-state--iimage"></div>
                         </div>
                         <div className="item-short-desc">
                             <div className="item-info">
