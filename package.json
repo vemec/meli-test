@@ -4,10 +4,10 @@
   "description": "Mercado Libre - Front-End Test Práctico.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "nodemon app.js",
     "watch": "webpack --progress --colors --watch",
-    "build": "webpack --progress --colorswatch"
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
