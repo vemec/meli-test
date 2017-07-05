@@ -34,7 +34,7 @@ const getItemIdFromUrl = () => {
 // on history change
 window.onpopstate = () => {
 	if (initialItemsSearch) {
-	store.dispatch(searchItems(getSearchString()))
+	    store.dispatch(searchItems(getSearchString()))
     } else if (initialItemInfo) {
         store.dispatch(getProduct(getItemIdFromUrl()))
     }

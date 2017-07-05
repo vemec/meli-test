@@ -131,7 +131,8 @@ function getCategories(filters, query) {
         // array de categorias
         return categories[0].values[0].path_from_root.map((category) => { return category.name })
     } else {
-        return query
+        var result = [query]
+        return result
     }
 }
 

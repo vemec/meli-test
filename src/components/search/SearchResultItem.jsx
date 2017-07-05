@@ -2,6 +2,9 @@
 import React from 'react'
 import { Link } from  'react-router-dom'
 
+// action
+import { getProduct } from '../../redux/actions/product'
+
 /**
  * SearchResultItem
  */
@@ -28,7 +31,7 @@ class SearchResultItem extends React.Component {
             <li className="result-item">
                 <div className="result-item-container">
                     <div className="result-item-image">
-                        <Link to={ '/items/'+this.props.product.id }>
+                        <Link to={ '/items/'+this.props.product.id } >
                             <figure>
                                 <img src={ this.props.product.picture } alt={ this.props.product.title } />
                             </figure>
@@ -41,7 +44,7 @@ class SearchResultItem extends React.Component {
                             { free_shipping_icon }
                         </div>
                         <h2 className="result-item-title">
-                            <Link to={ '/items/'+this.props.product.id }>
+                            <Link to={ '/items/'+this.props.product.id } >
                                 { this.props.product.title }
                             </Link>
                         </h2>

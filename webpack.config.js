@@ -39,7 +39,6 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.optimize.UglifyJsPlugin(),
         new ExtractTextPlugin('style.css'),
         new webpack.SourceMapDevToolPlugin({
             test: [/\.js$/, /\.jsx$/],
