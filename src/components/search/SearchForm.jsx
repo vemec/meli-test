@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={ this.handleSubmit } className="search" action="" role="search">
+            <form className="search" action="" role="search">
                 <input
                     aria-label={ this.state.placeholder }
                     placeholder={ this.state.placeholder }
@@ -59,7 +59,7 @@ class SearchForm extends React.Component {
                     onKeyPress={ this.handleSubmit }
                     value={ this.state.query }
                 />
-                <button role="button" aria-label="Buscar" type="submit" className="search-btn">
+                <button onClick={ (event) => this.handleClick(event) }  role="button" aria-label="Buscar" type="submit" className="search-btn">
                     <i className="search-icon"><span>Buscar</span></i>
                 </button>
             </form>
@@ -71,10 +71,17 @@ class SearchForm extends React.Component {
             query: event.target.value
         })
     }
-
+    
     handleSubmit(event) {
         if (event.key == 'Enter') {
             event.preventDefault()
+            this.props.onSearch(this.state.query, this.props.history)
+        }
+    }
+
+    handleClick(event) {
+        event.preventDefault()
+        if(this.state.query) {
             this.props.onSearch(this.state.query, this.props.history)
         }
     }
