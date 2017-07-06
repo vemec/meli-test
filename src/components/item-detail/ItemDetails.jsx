@@ -26,7 +26,7 @@ class ItemDetails extends React.Component {
         let item_status = (this.props.product.condition === 'new' ? 'Nuevo' : 'Usado' )
         let item_info =
         <div className="item-info">
-            { item_status } - { this.props.product.sold_quantity } Vendidos
+            { item_status } - { this.props.product.sold_quantity } { this.props.product.sold_quantity > 0 ? 'Vendidos' : 'Vendido' } 
         </div>
 
         // Item description
