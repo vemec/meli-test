@@ -26,7 +26,7 @@
 
 ## Optimización de imagenes
 
-Optimice las imagenes entregadas para una mejor performance a la hora de bajar estos recursos
+Las imágenes entregadas fueron optimizadas para una mejor performance a la hora de bajar estos recursos
 
 | Image              | Original Size | Final Size | Savings |
 | ------------------ | ------------- | ---------- | ------- |
